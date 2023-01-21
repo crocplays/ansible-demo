@@ -7,6 +7,10 @@
   - name: install updates
     tags: always
     apt:
+      name:
+      - curl
+      - zip
+      - unzip
       #upgrade: dist
       update_cache: yes
 

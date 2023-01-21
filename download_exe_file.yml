@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: download zipped exe file from github
+    tags: download,exe
+    shell: "curl -LO https://raw.githubusercontent.com/crocplays/ansible-demo/main/files/test.zip"
+#    args:
+#      chdir: home/croc/
+
+  - name: unzip file
+    tags: unzip
+    shell: "unzip test.zip"
