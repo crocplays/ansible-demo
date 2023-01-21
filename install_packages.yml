@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates
+    tags: always
+    apt:
+      #upgrade: dist
+      update_cache: yes
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: install apache,apache php and git packages
+    tags: apache,apache2,git,ubuntu
+    package:
+      name:
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+        - "{{ git_package }}"
+      state: latest
+
+- hosts: file_servers
+  become: true
+  tasks:
+  - name: install git
+    tags: git,ubuntu
+    package:
+      name:
+        - "{{ git_package }}"
+      state: latest
+
+
