@@ -1,0 +1,40 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create adi user
+    tags: always
+    user:
+      name: adi
+      groups: root
+
+  - name: add ssh key for adi
+    tags: always
+    authorized_key:
+      user: adi
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu67DPJiCjUimWIHBQzpW7oSARh3QM0mXrZkGDcdKEx ansible"
+
+  - name: add sudoers file for adi
+    tags: always
+    copy:
+      src: sudoers_adi
+      dest: /etc/sudoers.d/adi
+      owner: root
+      group: root
+      mode: 0440
+
+
+

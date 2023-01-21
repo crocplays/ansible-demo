@@ -2,7 +2,12 @@
   become: true
   tasks:
 
-  - name: download file
+  - name: install unzip
+    apt:
+      name:
+      - unzip
+
+  - name: download and unzip file
     unarchive:
       src: https://raw.githubusercontent.com/crocplays/ansible-demo/main/files/test.zip
       dest: /home/croc
