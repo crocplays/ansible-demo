@@ -1,0 +1,6 @@
+apache_package: apache2
+php_package: libapache2-mod-php
+git_package: git
+ssh_users: "croc adi"
+ssh_templates_file: sshd_config_ubuntu.j2
+

@@ -21,20 +21,6 @@
       user: adi
       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu67DPJiCjUimWIHBQzpW7oSARh3QM0mXrZkGDcdKEx ansible"
 
-  - name: generate sshd_config file from template
-    tags: ssh
-    template:
-      src: "{{ ssh_templates_file }}"
-      dest: /etc/ssh/sshd_config
-      owner: root
-      group: root
-      mode: 0644
-
-  - name: restart_sshd
-    service:
-      name: sshd
-      state: restarted
-
 - hosts: web_servers
   become: true
   tasks:
