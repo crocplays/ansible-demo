@@ -1,0 +1,10 @@
+---
+#Removes all created files and packages
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: Delete Files
+    file:
+      path: /home/croc/Downloads/amd64
+      state: absent

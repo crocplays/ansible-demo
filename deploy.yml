@@ -1,0 +1,12 @@
+---
+
+- hosts: drones
+  become: true
+  tasks:
+
+  - name: copy large resources to jetson "{{ JETSON_RESOURCES_FOLDER }}"
+    tags: copy
+    copy:
+      src: "{{ LOCAL_RESOURCES_DIR }}"
+      dest: "{{ JETSON_RESOURCES_FOLDER }}"
+      remote_src: no

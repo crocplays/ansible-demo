@@ -1,42 +1,5 @@
 ---
 
-- hosts: all
-  become: true
-  pre_tasks:
-
-  - name: update repo cache
-    tags: always
-    apt:
-      name:
-        - curl
-      update_cache: yes
-    changed_when: false
-    when: ansible_distribution == "Ubuntu"
-
-- hosts: all
-  become: true
-  tasks:
-
-  - name: add ssh key for adi
-    tags: always
-    authorized_key:
-      user: adi
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu67DPJiCjUimWIHBQzpW7oSARh3QM0mXrZkGDcdKEx ansible"
-
-  - name: generate sshd_config file from template
-    tags: ssh
-    template:
-      src: "{{ ssh_templates_file }}"
-      dest: /etc/ssh/sshd_config
-      owner: root
-      group: root
-      mode: 0644
-
-  - name: restart_sshd
-    service:
-      name: sshd
-      state: restarted
-
 - hosts: drones
   become: true
   tasks:
@@ -47,6 +10,7 @@
       name:
 #       - "{{ ros2_package }}"
         - "{{ python_colcon_package }}"
+        - "{{ git_package }}"
         - "{{ python_rosdep_package}}"
         - "{{ python_vcstool_package }}"
         - "{{ python_rosinstall_package }}"
@@ -64,7 +28,7 @@
         - "{{ libjansson_package }}"
         - "{{ libyaml_cpp_dev_package}}"
 
-      state: latest
+      state: absent
 
 
 

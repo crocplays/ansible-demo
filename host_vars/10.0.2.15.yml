@@ -1,6 +1,33 @@
-apache_package: apache2
-php_package: libapache2-mod-php
-git_package: git
+#---------------- Packages-------------------
+#ros2_package: ros-foxy-ros-base
+python_colcon_package: python3-colcon-common-extensions
+python_rosdep_package: python3-rosdep
+python_vcstool_package: python3-vcstool
+python_rosinstall_package: python3-rosinstall-generator
+python_osrf_package: python3-osrf-pycommon
+v4l_utils_package: v4l-utils
+ssl_package: libssl1.1
+libgstreamer_package: libgstreamer1.0-0
+gstreamer_tools_package: gstreamer1.0-tools
+gstreamer_plugins_good_package: gstreamer1.0-plugins-good
+gstreamer_plugins_bad_package: gstreamer1.0-plugins-bad
+gstreamer_plugins_ugly_package: gstreamer1.0-plugins-ugly
+gstreamer_libav_package: gstreamer1.0-libav
+gstreamer_plugins_base_package: libgstreamer-plugins-base1.0-dev
+libgstrtspserver_package: libgstrtspserver-1.0-0
+libjansson_package: libjansson4
+libyaml_cpp_dev_package: libyaml-cpp-dev
+
+
+
+#--------------- Jetson ---------------------
+JETSON_USER: fp
+JETSON_IP: 192.168.19.181
+JETSON_RESOURCES_FOLDER: /home/croc/Downloads
+
+#--------------- SSH ------------------------
 ssh_users: "croc adi"
 ssh_templates_file: sshd_config_ubuntu.j2
 
+#--------------- General --------------------
+LOCAL_RESOURCES_DIR: ~/resources/amd64
